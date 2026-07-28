@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.ipynb_checkpoints/
+data/raw/*.csv
+data/processed/*
+models/*.joblib
+models/*.json
+reports/figures/*.png
+reports/figures/shap/*.png
+reports/metrics/*.csv
+reports/metrics/*.json
+.coverage
+htmlcov/
+.ruff_cache/
