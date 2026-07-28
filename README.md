@@ -1,5 +1,25 @@
 # Detecção de Fraudes em Transações com Machine Learning
 
+<p align="center">
+  <img src="docs/assets/logo-genai-dados-cyber.webp" alt="GenAI, Dados & Cyber" width="280">
+</p>
+
+<p align="center">
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white">
+  <img alt="scikit-learn" src="https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikitlearn&logoColor=white">
+  <img alt="XGBoost" src="https://img.shields.io/badge/XGBoost-Gradient%20Boosting-1D4ED8">
+  <img alt="SHAP" src="https://img.shields.io/badge/SHAP-Explainable%20AI-0F766E">
+  <img alt="Testes" src="https://img.shields.io/badge/tests-10%20passed-16A34A">
+  <img alt="CI" src="https://img.shields.io/github/actions/workflow/status/YanCarneosso/fraud-detection-ml/ci.yml?branch=main&label=CI&logo=githubactions">
+  <img alt="Licença MIT" src="https://img.shields.io/badge/license-MIT-334155">
+</p>
+
+<p align="center">
+  <strong>Machine Learning</strong> · <strong>Fraud Detection</strong> ·
+  <strong>Imbalanced Data</strong> · <strong>Explainable AI</strong> ·
+  <strong>MLOps</strong> · <strong>Python</strong>
+</p>
+
 Projeto de portfólio em Machine Learning aplicado à identificação de transações
 fraudulentas. A solução cobre o ciclo completo: validação dos dados, análise exploratória,
 engenharia de atributos, prevenção de leakage, experimentação, otimização, explicabilidade,
@@ -22,6 +42,19 @@ persistência, inferência, testes e apresentação executiva.
 
 > O dataset é extremamente desbalanceado. Por isso, acurácia isolada não é critério
 > adequado e nenhum resultado é declarado sem execução.
+
+## Demonstração visual
+
+O relatório executivo transforma métricas técnicas em uma leitura orientada a negócio.
+A versão completa está disponível em [docs/index.html](docs/index.html).
+
+| Matriz de confusão | Curva Precision-Recall |
+|---|---|
+| ![Matriz de confusão](docs/assets/screenshots/matriz-confusao.png) | ![Curva Precision-Recall](docs/assets/screenshots/curva-precision-recall.png) |
+
+### Sensibilidade ao threshold
+
+![Análise de threshold](docs/assets/screenshots/analise-threshold.png)
 
 ## Objetivo e abordagem
 

@@ -23,7 +23,8 @@ def _format_value(value: Any) -> str:
 def _image_data(path: Path) -> str:
     """Converte uma imagem em data URI, tornando o HTML portátil."""
     encoded = base64.b64encode(path.read_bytes()).decode("ascii")
-    return f"data:image/png;base64,{encoded}"
+    mime = "image/webp" if path.suffix.lower() == ".webp" else "image/png"
+    return f"data:{mime};base64,{encoded}"
 
 
 def _table(frame: pd.DataFrame) -> str:
@@ -58,6 +59,11 @@ def generate_html_report(
     final_metrics = json.loads(required[2].read_text(encoding="utf-8"))
     classification = json.loads(required[3].read_text(encoding="utf-8"))
     metadata = json.loads(required[4].read_text(encoding="utf-8"))
+    logo_path = figures_dir.parents[1] / "docs" / "assets" / "logo-genai-dados-cyber.webp"
+    logo_html = (
+        f'<img class="logo" src="{_image_data(logo_path)}" alt="GenAI, Dados & Cyber">'
+        if logo_path.is_file() else ""
+    )
     ranked = comparison.loc[~comparison["Balanceamento"].str.startswith("dummy")].sort_values(
         ["Custo", "PR-AUC", "Recall da fraude"], ascending=[True, False, False]
     )
@@ -127,7 +133,7 @@ def generate_html_report(
 header{{position:relative;overflow:hidden;background:linear-gradient(120deg,#0b2036 0%,#123f5a 65%,#176b87 100%);color:#fff;padding:26px max(5vw,24px) 62px}}
 header:after{{content:"";position:absolute;width:420px;height:420px;border:90px solid #ffffff0d;border-radius:50%;right:-120px;top:-220px}}
 .topbar{{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ffffff2b;padding-bottom:18px;margin-bottom:48px}}
-.brand{{font-weight:700;letter-spacing:.08em}} .status{{font-size:12px;background:#22c55e22;border:1px solid #86efac66;padding:5px 11px;border-radius:99px}}
+.brand{{display:flex;align-items:center;gap:14px;font-weight:700;letter-spacing:.08em}} .logo{{width:74px;height:74px;object-fit:contain;filter:drop-shadow(0 4px 12px #0008)}} .status{{font-size:12px;background:#22c55e22;border:1px solid #86efac66;padding:5px 11px;border-radius:99px}}
 header p{{max-width:820px;color:#dceaf1;font-size:17px}} main{{max-width:1320px;margin:auto;padding:34px 24px 70px}}
 h1{{font-size:clamp(32px,5vw,58px);max-width:960px;line-height:1.08;margin:0 0 18px;letter-spacing:-.035em}} h2{{margin:54px 0 8px;font-size:26px;color:var(--navy)}}
 .section-intro{{color:var(--muted);max-width:900px;margin:0 0 22px}}
@@ -150,7 +156,7 @@ footer{{color:var(--muted);margin-top:50px}}
 </style>
 </head>
 <body>
-<header><div class="topbar"><div class="brand">ANÁLISE DE RISCO · MACHINE LEARNING</div><div class="status">● Processamento concluído</div></div>
+<header><div class="topbar"><div class="brand">{logo_html}<span>ANÁLISE DE RISCO · MACHINE LEARNING</span></div><div class="status">● Processamento concluído</div></div>
 <div class="eyebrow">Relatório executivo de desempenho</div>
 <h1>Resultado de Detecção de Fraudes em Transações</h1>
 <p>Visão consolidada do desempenho do modelo, do impacto operacional das decisões e dos
