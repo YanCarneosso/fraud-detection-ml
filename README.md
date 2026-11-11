@@ -1,8 +1,9 @@
-# Detecção de Fraudes em Transações com Machine Learning
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/cover-dark.svg">
+  <img src="assets/cover-light.svg" width="100%" alt="Detecção de Fraudes em Transações com Machine Learning. Recall de 85%, PR-AUC de 0,84 e explicabilidade com SHAP.">
+</picture>
 
-<p align="center">
-  <img src="docs/assets/logo-genai-dados-cyber.webp" alt="GenAI, Dados & Cyber" width="280">
-</p>
+<p align="center"><strong>Machine Learning de ponta a ponta para detectar fraudes em dados extremamente desbalanceados.</strong></p>
 
 <p align="center">
   <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white">
@@ -14,18 +15,22 @@
   <img alt="Licença MIT" src="https://img.shields.io/badge/license-MIT-334155">
 </p>
 
-<p align="center">
-  <strong>Machine Learning</strong> · <strong>Fraud Detection</strong> ·
-  <strong>Imbalanced Data</strong> · <strong>Explainable AI</strong> ·
-  <strong>MLOps</strong> · <strong>Python</strong>
-</p>
+## Em 30 segundos
+
+- **Problema:** detectar transações fraudulentas num dataset em que a fraude é rara (*Credit Card Fraud Detection*). Nesse cenário a acurácia engana: um modelo que nunca acusa fraude já parece excelente.
+- **Solução:** pipeline `imblearn` sem *data leakage*, comparação entre regressão logística, Random Forest e XGBoost com diferentes estratégias de balanceamento, threshold escolhido na validação por custo de negócio e explicabilidade com SHAP.
+- **Resultado no teste isolado:** o XGBoost com pesos detectou 63 de 74 fraudes (recall de 85,1%), com PR-AUC de 0,84 e ROC-AUC de 0,97. Detalhes no [relatório executivo](https://yancarneosso.github.io/fraud-detection-ml/).
+- **Stack:** Python · pandas · scikit-learn · imbalanced-learn · XGBoost · SHAP · pytest · GitHub Actions
+- **Por onde começar:** [metodologia](docs/METHODOLOGY.md) · [decisões técnicas](docs/DECISIONS.md) · [arquitetura](docs/ARCHITECTURE.md)
+
+## Sobre o projeto
 
 Projeto de portfólio em Machine Learning aplicado à identificação de transações
 fraudulentas. A solução cobre o ciclo completo: validação dos dados, análise exploratória,
 engenharia de atributos, prevenção de leakage, experimentação, otimização, explicabilidade,
 persistência, inferência, testes e apresentação executiva.
 
-[Ver relatório executivo](docs/index.html) ·
+[Ver relatório executivo](https://yancarneosso.github.io/fraud-detection-ml/) ·
 [Arquitetura](docs/ARCHITECTURE.md) ·
 [Metodologia](docs/METHODOLOGY.md) ·
 [Decisões técnicas](docs/DECISIONS.md)
@@ -46,7 +51,7 @@ persistência, inferência, testes e apresentação executiva.
 ## Demonstração visual
 
 O relatório executivo transforma métricas técnicas em uma leitura orientada a negócio.
-A versão completa está disponível em [docs/index.html](docs/index.html).
+A versão completa está disponível em [yancarneosso.github.io/fraud-detection-ml](https://yancarneosso.github.io/fraud-detection-ml/) (código-fonte em [docs/index.html](docs/index.html)).
 
 | Matriz de confusão | Curva Precision-Recall |
 |---|---|
@@ -200,7 +205,10 @@ Resultados reais surgem apenas depois da execução com o dataset:
 - `models/model_metadata.json`: threshold, ordem das features, classe e métricas;
 - `reports/figures/`: EDA, curvas e SHAP.
 
-Este repositório não contém números pré-preenchidos para evitar resultados fabricados.
+Os números do resumo no topo vêm da execução registrada no
+[relatório executivo](https://yancarneosso.github.io/fraud-detection-ml/) (modelo `xgboost_weighted`, threshold 0,05,
+42.648 transações legítimas e 74 fraudes no teste). Uma nova execução com o dataset
+regenera todos os artefatos.
 
 ## Inferência
 
@@ -231,3 +239,7 @@ drift, fairness, testes de carga e serviço de inferência versionado.
 
 > Aviso: projeto exclusivamente educacional. Não deve bloquear transações reais sem
 > validação de domínio, segurança, governança e monitoramento.
+
+<p align="center">
+  <img src="docs/assets/logo-genai-dados-cyber.webp" alt="GenAI, Dados & Cyber" width="140">
+</p>
